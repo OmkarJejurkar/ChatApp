@@ -6,9 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Entity
-public class MyMessage {
-    private String senderName;
-    private String content;
-    private int hr;
-    private int min;
+public class User {
+    private String uname;
+    private String password;
 }

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 @Controller
-public class TestController {
+public class MessageController {
     private final SimpMessagingTemplate simpMessagingTemplate;
 
-    TestController(SimpMessagingTemplate simpMessagingTemplate) {
+    MessageController(SimpMessagingTemplate simpMessagingTemplate) {
         this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
