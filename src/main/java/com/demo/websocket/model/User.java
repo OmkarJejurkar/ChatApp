@@ -1,12 +1,19 @@
 package com.demo.websocket.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.stereotype.Component;
+import java.util.Date;
 
 @Data
 @Entity
 public class User {
-    private String uname;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+    private String name;
     private String password;
+    @Column(name="registeredTime")
+    private Date registeredTime;
+    @Column(name="lastLoginTime")
+    private Date lastLoginTime;
 }

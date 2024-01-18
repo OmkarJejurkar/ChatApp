@@ -3,7 +3,9 @@ package com.demo.websocket.service;
 import com.demo.websocket.model.User;
 import com.demo.websocket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired

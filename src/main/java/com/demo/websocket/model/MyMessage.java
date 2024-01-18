@@ -5,7 +5,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
-@Entity
+@Component
 public class MyMessage {
     private String senderName;
     private String content;

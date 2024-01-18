@@ -16,7 +16,7 @@ public class UserController {
 
     @GetMapping("/authenticateUser")
     public ResponseEntity<Object> checkAuthentication(@RequestBody User user){
-        User authenticatedUser = userService.getAuthenticatedUser(user.getUname(),user.getPassword());
+        User authenticatedUser = userService.getAuthenticatedUser(user.getName(),user.getPassword());
         if(authenticatedUser!=null){
             return ResponseEntity.status(HttpStatus.OK).body(authenticatedUser);
         }
