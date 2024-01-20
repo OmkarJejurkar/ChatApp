@@ -88,7 +88,7 @@
 
     function connect() {
         $("#nameDiv").show();
-        socket = new SockJS('http://localhost:8080/socket1');
+        socket = new SockJS('http://localhost:8081/socket1');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
