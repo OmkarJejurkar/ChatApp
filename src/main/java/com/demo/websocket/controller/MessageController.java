@@ -36,9 +36,5 @@ public class MessageController {
 //        return myMessage;
     }
 
-    @GetMapping("/personal")
-    public String getIndex1(){
-        return "index1.html";
-    }
 
 }
