@@ -16,4 +16,10 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.getAuthenticatedUser(uname,password);
         return user;
     }
+
+    @Override
+    public User saveUser(User user) {
+        User savedUser = userRepository.save(user);
+        return savedUser;
+    }
 }

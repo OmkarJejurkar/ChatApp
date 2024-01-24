@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-
     @GetMapping("/personal")
     public String getIndex1(){
         return "index1.html";
