@@ -2,6 +2,7 @@ package com.demo.websocket.controller;
 
 import com.demo.websocket.model.User;
 import com.demo.websocket.service.UserService;
+import com.demo.websocket.util.DateTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<Object> registerUser(@RequestBody User user){
+        user.setRegisteredTime(DateTimeService.getCurrentTime());
         User savedUser = userService.saveUser(user);
         if(savedUser!=null){
             return ResponseEntity.status(HttpStatus.OK).body(savedUser);
