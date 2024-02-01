@@ -21,9 +21,7 @@ function validatePassword() {
   const passwordValue = password.value;
   const confirmPasswordValue = confirmPassword.value;
 
-  // Trim whitespace from name
-  const trimmedName = name.value.trim();
-  console.log(trimmedName);
+
   // Password length validation
   if (passwordValue.length < 8 || passwordValue.length > 15) {
     displayErrorMessage("Password must be between 8 and 15 characters long.");
@@ -65,8 +63,39 @@ function displayErrorMessage(message) {
 // Form submission event listener
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
-  if (!validatePassword()) {
-    event.preventDefault(); // Prevent form submission if validation fails
+  if (validatePassword()) {
+    event.preventDefault();  // Prevent form submission if validation fails
+
+      // Collect form data
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // Trim whitespace from name
+       const trimmedName = name.trim();
+
+      // Construct the data to send in the request
+      var data = {"name": trimmedName,"email": email,"userName": username,"password": password};
+
+    console.log(data);
+      // Make the POST request using Fetch API
+      fetch("http://localhost:8081/register", {
+        method: "POST",
+        mode: "cors", // Add this line to allow cross-origin requests
+        body: JSON.stringify(data),
+        headers:{
+            "Content-Type": "application/json"}
+      }).then(response => {
+        if (response.ok) {
+
+          console.log("Registration successful!");
+         // window.location.href = "/URL of WebsocketApp"; // Place the URL of WebsocketAPP
+        } else {
+          console.log("Registration failed");
+        }
+      }).catch(error => {
+        console.error("Error:", error);
+      });
   }
 });
-
