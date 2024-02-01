@@ -21,20 +21,20 @@ form.addEventListener("submit", (event) => {
   const password = document.getElementById("password").value;
 
   // Construct the data to send in the request
-  const data = new FormData();
-  data.append("username", username);
-  data.append("password", password);
-
+  var data = {"userName":username,"password": password};
+    console.log(data);
   // Make the POST request using Fetch API
-  fetch("/authenticateUser", {
+  fetch("http://localhost:8081/authenticateUser", {
     method: "POST",
-    body: data
+    mode: "cors", // Add this line to allow cross-origin requests
+    body: JSON.stringify(data),
+    headers:{
+    "Content-Type": "application/json"}
   })
   .then(response => {
     if (response.ok) {
-
       console.log("Login successful!");
-      window.location.href = "/URL of WebsocketApp"; // Place the URL of WebsocketAPP
+      //window.location.href = "/URL of WebsocketApp"; // Place the URL of WebsocketAPP
     } else {
       console.error("Login failed");
       alert("Invalid username or password");

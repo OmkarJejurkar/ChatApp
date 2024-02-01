@@ -13,6 +13,7 @@ public class User {
     private String name;
     private String userName;
     private String password;
+    private String email;
     private Date registeredTime;
     private Date lastLoginTime;
 }

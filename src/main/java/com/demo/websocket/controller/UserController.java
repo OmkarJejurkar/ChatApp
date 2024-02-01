@@ -28,6 +28,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<Object> registerUser(@RequestBody User user){
+        System.out.println(user.getUserName()+user.getPassword());
         user.setRegisteredTime(DateTimeService.getCurrentTime());
         User savedUser = userService.saveUser(user);
         if(savedUser!=null){
