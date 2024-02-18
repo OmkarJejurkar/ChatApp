@@ -34,7 +34,7 @@ form.addEventListener("submit", (event) => {
   .then(response => {
     if (response.ok) {
       console.log("Login successful!");
-      //window.location.href = "/URL of WebsocketApp"; // Place the URL of WebsocketAPP
+      window.location.href = "html/homePage.html"; // Place the URL of WebsocketAPP
     } else {
       console.error("Login failed");
       alert("Invalid username or password");

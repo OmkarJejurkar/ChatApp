@@ -7,4 +7,6 @@ public interface UserService {
     public User getAuthenticatedUser(String uname, String password);
 
     public User saveUser(User user);
+
+    public User getUserByName(String name);
 }
