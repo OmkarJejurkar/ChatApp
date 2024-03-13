@@ -10,12 +10,10 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@CrossOrigin
 public class MessageController {
     @Autowired
     MessageService messageService;
@@ -61,5 +59,16 @@ public class MessageController {
     @PostMapping("/getMessages")
     public ResponseEntity<Object> getMessages(@RequestBody MyMessage myMessage){
         return ResponseEntity.status(HttpStatus.OK).body(messageService.getMessageByNames(myMessage.getSenderName(),myMessage.getRecieverName()));
+    }
+
+    @DeleteMapping("/deleteMessageById/{id}")
+    public ResponseEntity<Object> deleteMessageById(@PathVariable int id){
+        messageService.deleteMessageById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("");
+    }
+    @PutMapping("/setReaction/{messageId}/{reactionId}")
+    public ResponseEntity<Object> setReaction(@PathVariable int messageId,@PathVariable int reactionId){
+        messageService.setReactionById(messageId,reactionId);
+        return ResponseEntity.status(HttpStatus.OK).body("");
     }
 }

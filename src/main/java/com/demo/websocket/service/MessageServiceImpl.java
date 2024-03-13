@@ -22,4 +22,15 @@ public class MessageServiceImpl implements MessageService{
     public List<MyMessage> getMessageByNames(String sname, String rname) {
         return messageRepository.getMessagesByNames(sname,rname);
     }
+
+    @Override
+    public void deleteMessageById(int id) {
+          messageRepository.deleteById(id); ;
+    }
+
+    @Override
+    public void setReactionById(int messageId,int reactionId) {
+        System.out.println("inside set reaction "+reactionId+" : "+messageId);
+        messageRepository.setReactionById(messageId,reactionId);
+    }
 }

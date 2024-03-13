@@ -25,20 +25,7 @@ function connect() {
                 console.log('Received message min: ' + JSON.parse(message.body).min);
                 showGreeting(JSON.parse(message.body).senderName, JSON.parse(message.body).content,JSON.parse(message.body).hr,JSON.parse(message.body).min);
             });
-            setConnected(true);
         });
-    }
-
-function setConnected(connected) {
-        //$("#connect").prop("disabled", connected);
-        //$("#disconnect").prop("disabled", !connected);
-        if (connected) {
-           // $("#conversation").show();
-        }
-        else {
-         //   $("#conversation").hide();
-        }
-       // $("#greetings").html("");
     }
 
 function showGreeting(name, message,hr,min) {
@@ -52,7 +39,7 @@ function showGreeting(name, message,hr,min) {
          var userChatBox = document.getElementById('userChatBox');
          var div = document.createElement("div");
          div.className="row";
-         div.innerHTML = '<b>'+message+'</b>';
+         div.innerHTML = '<b>'+message+'</b>'+hr+":"+min;
          userChatBox.appendChild(div);
        // $("#greetings").append("<tr><td><b>" + name + " : "+"</b>" + message + "</td>"+"<td>"+hr+":"+min+" "+AMPM+"</td></tr>");
     }
@@ -196,8 +183,7 @@ function loadLoggedInName(name){
 function fetchMessagesInModel()
 {
     console.log('load messages in model is called ');
-    data =
-    {
+    data ={
         "senderName" : loggedInName,
         "recieverName" : document.getElementById('modalUserName').textContent
     };
@@ -226,20 +212,36 @@ function loadMessagesInModel(msgList){
 //         i++;
 //    }
 
-while (i < msgList.length) {
+    while (i < msgList.length) {
         console.log(msgList[i]);
         var div = document.createElement("div");
-        if(msgList[i].senderName==loggedInName){
-            div.className="row justify-content-end"; // Use Bootstrap's justify-content-end class
-        }
-        else{
-            div.className="row justify-content-start"; // Use Bootstrap's justify-content-start class
+        if(msgList[i].senderName == loggedInName) {
+            div.className = "row justify-content-end"; // Use Bootstrap's justify-content-end class
+        } else {
+            div.className = "row justify-content-start"; // Use Bootstrap's justify-content-start class
         }
         var innerDiv = document.createElement("div");
         innerDiv.className = "col-auto"; // Use Bootstrap's col-auto class to make the width auto-adjust
-        innerDiv.textContent = msgList[i].content;
+
+        // Create a <strong> element for bold text
+        var boldText = document.createElement("strong");
+        boldText.textContent = msgList[i].content; // Set the bold text content
+
+        // Create a span element for hr and min
+        var timeSpan = document.createElement("div");
+        timeSpan.className="row";
+        timeSpan.textContent = " " + msgList[i].hr + ":" + msgList[i].min; // Set the time content
+
+        // Append the bold text and time span to the innerDiv
+        innerDiv.appendChild(boldText);
+        innerDiv.appendChild(timeSpan);
+
+        // Append the innerDiv to the div
         div.appendChild(innerDiv);
+
+        // Append the div to the userChatBox
         userChatBox.appendChild(div);
+
         i++;
     }
 }

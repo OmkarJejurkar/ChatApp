@@ -17,4 +17,5 @@ public class MyMessage {
     private String content;
     private int hr;
     private int min;
+    private int reaction;
 }

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class UserController {
     @Autowired
@@ -65,5 +66,13 @@ public class UserController {
         User user = new User();
         user.setName(userName);
         return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<Object> logOutUser(HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        System.out.println(session.getId());
+        session.invalidate();
+        return ResponseEntity.status(HttpStatus.OK).body("user logged out");
     }
 }
